@@ -44,9 +44,9 @@ def generate_grid_combinations(x, y, cubes):
 
 
 def main():
-    x = 2
-    y = 1
-    cubes = 1
+    x = 4
+    y = 2
+    cubes = 4
     combinations = generate_grid_combinations(x, y, cubes)
 
     # Print the number of combinations
