@@ -47,9 +47,6 @@ def generate_lines(list_of_points):
         areas_lines.append((area_points[3], area_points[0], f'l{line_idx+3}'))
         line_idx += 4
 
-generate_surface_area(areas_dims)
-generate_points(areas_dims, univ_origin)
-generate_lines(areas_points)
 
 # Plot the points
 fig, ax = plt.subplots()
