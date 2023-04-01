@@ -5,14 +5,15 @@ class space_creator_v0:
         self.lines = []
         self.spaces = []
         self.space_all = []
+        self.space_names_all = []
         self.total_space = 0  
 
     def horiz_generate_space_all(self, list_of_dims, origin_point):
-            #get_space_name(self, list_of_dims):
+            # get_space_name(self, list_of_dims):
             for space in list_of_dims:
                 for key in space:
                     self.space_name.append(key)
-            #generate_points(self, list_of_dims, origin_point):
+            # generate_points(self, list_of_dims, origin_point):
             endpoint = origin_point
             for i, items in enumerate(list_of_dims):
                 for key, value in items.items():
@@ -25,19 +26,19 @@ class space_creator_v0:
                                     (space_center[0] - value[0]/2, space_center[1] + value[1]/2)]
                     self.points.append(space_corners)
                     endpoint = space_corners[1]
-            #generate_lines(self):
+            # generate_lines(self):
             for point_set in self.points:
                 lines_list = []
                 for i in range(len(point_set)):
                     line = (point_set[i], point_set[(i+1)%len(point_set)])
                     lines_list.append(line)
                 self.lines.append(lines_list)
-            #generate_surface_space(self, list_of_dims):
+            # generate_surface_space(self, list_of_dims):
             for space in list_of_dims:
                 for key, value in space.items():
                     space_surface = value[0] * value[1]
                     self.spaces.append(space_surface)
-            #generate_space_data_all(self):
+            # generate_space_data_all(self):
             for i in range(len(self.space_name)):
                 space_all_comp = []
                 space_all_comp.append(self.space_name[i])
@@ -45,6 +46,22 @@ class space_creator_v0:
                 space_all_comp.extend(self.lines[i])
                 space_all_comp.append(self.spaces[i])
                 self.space_all.append(space_all_comp)
+            # generate_space_names_all(self):   
+            for i, name in enumerate(self.space_name):
+                # add all the names to the space_names_all list
+                names_list = [name]
+                # add the name of the points to the list
+                for j in range(len(self.points[i])):
+                    point_name = f"{name}_p{j}"
+                    names_list.append(point_name)
+                # add the name of the lines to the list
+                for j in range(len(self.lines[i])):
+                    line_name = f"{name}_l{j}"
+                    names_list.append(line_name)
+                # add the name of the surface to the list   
+                surface_name = f"{name}_s0"
+                names_list.append(surface_name)
+                self.space_names_all.append(names_list)
 
     def vert_generate_space_all(self, list_of_dims, origin_point):
         #get_space_name(self, list_of_dims):
@@ -84,6 +101,23 @@ class space_creator_v0:
             space_all_comp.extend(self.lines[i])
             space_all_comp.append(self.spaces[i])
             self.space_all.append(space_all_comp)
+            # generate_space_names_all(self):   
+            for i, name in enumerate(self.space_name):
+                # add all the names to the space_names_all list
+                names_list = [name]
+                # add the name of the points to the list
+                for j in range(len(self.points[i])):
+                    point_name = f"{name}_p{j}"
+                    names_list.append(point_name)
+                # add the name of the lines to the list
+                for j in range(len(self.lines[i])):
+                    line_name = f"{name}_l{j}"
+                    names_list.append(line_name)
+                # add the name of the surface to the list   
+                surface_name = f"{name}_s0"
+                names_list.append(surface_name)
+                self.space_names_all.append(names_list)
+
 
     def generate_total_space(self):
         total_space = 0

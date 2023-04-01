@@ -7,11 +7,12 @@ univ_origin = (0, 0)
 
 #areas_dims = [{'area_0': (26, 56)}]
 #areas_dims = [{'area_0': (25, 25)}, {'area_1': (25, 25)} ]
-#areas_dims = [{'area_0': (26, 56)}, {'area_1': (32, 56)}, {'area_2': (26, 56)}]
+areas_dims = [{'area_0': (26, 56)}, {'area_1': (32, 56)}, {'area_2': (26, 56)}]
 
-# area_1 = space_creator_v0()
-# area_1.horiz_generate_space_all(areas_dims, univ_origin)
-#print(area_1.space_all)
+area_1 = space_creator_v0()
+area_1.vert_generate_space_all(areas_dims, univ_origin)
+print(area_1.space_all)
+print(area_1.space_names_all)
 
 # print('\n')
 

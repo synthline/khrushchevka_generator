@@ -27,18 +27,18 @@ def generate_grid_combinations(x, y, cube_types):
 
 def main():
     x = 2
-    y = 2
-    cube_types = 3
+    y = 4
+    cube_types = 4
     combinations = generate_grid_combinations(x, y, cube_types)
 
     # Print the number of combinations
     print(f"Total number of combinations: {len(combinations)}")
 
     # Print the combinations
-    for idx, combo in enumerate(combinations, start=1):
-        print(f"\nCombination {idx}:")
-        for row in combo:
-            print(row)
+    # for idx, combo in enumerate(combinations, start=1):
+    #     print(f"\nCombination {idx}:")
+    #     for row in combo:
+    #         print(row)
 
 if __name__ == "__main__":
     main()
