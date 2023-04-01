@@ -1,0 +1,28 @@
+area creator -- done 
+
+room creator -- done 
+
+matplotlib scaling (display_2d) -- done 
+
+generative layout:
+theory -- done
+implement -- ?
+
+generative rotator 4 (every 90)
+generative rotator 8 (every 45)
+
+
+
+#####__BACKLOG__#####
+
+test spaces with apartments (preety much the same)
+
+try starting to attach some constraints such that every apartment needs to be connected to a staircase.
+
+basd on a input no, shuffle between horiz and vert. 
+compute total possible combinations numbers.
+
+integrate room -> area -> apartment -> building
+
+
+ALWAYS COMPUTE THE TOTAL POSSILBE COMBINATIONS.
