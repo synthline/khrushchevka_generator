@@ -20,7 +20,7 @@ no_apts = 4 ### 7 -- Number of apartments per floor
 build_1 = buildings(modular_space)
 
 
-build_1_loc = loc_calculator(no_areas, modular_space, rotation, balconies, levels, ext_modules, apt_modules, no_apts)
+build_1_loc = loc_calculator(no_areas, modular_space, rotation, levels, ext_modules, apt_modules, no_apts)
 build_1_loc.calculate_apt_and_building_loc()
 
 # Rooms 
