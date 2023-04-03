@@ -1,6 +1,6 @@
 class buildings:
-    def __init__(self, b_id):
-        self.b_id = b_id
+    def __init__(self, modular_space):
+        self.modular_space = modular_space
         self.b_00_building_areas = {'f0': (2600, 5200), 'h0': (1300, 5200)}
         self.b_10_building_areas = {'f1': (2600, 5800), 'f2': (2600, 5800),'f3': (2600, 6400),'f4': (3200, 5200), 'f5': (3200, 5800), 'f6': (3200, 5800),
                                     'h1': (1300, 5800), 'h2': (1300, 5800), 'h3': (1300, 6400), 'h4': (1600, 5200), 'h5': (1600, 5800), 'h6': (1600, 5800)}

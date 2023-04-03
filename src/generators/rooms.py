@@ -1,30 +1,95 @@
 import itertools 
+import random
 
 class rooms:
-    def __init__(self, b_id):
+    def __init__(self, b_id, no_areas, modular_space, apt_modules):
         self.b_id = b_id
-        self.room_type_names = ['bathroom', 'kitchen', 'living_room', 'bedroom_1', 'bedroom_2', 'bedroom_3', 'hallway']
-        self.b_00_room_dims = []
-        self.b_10_room_dims = []
-        self.b_11_room_dims = [(1600, 3200), (3200, 3200), (4200, 3200), (4800, 3200), (6400, 3200),
-                    (1600, 4800), (3200, 4800), (4200, 4800), (4800, 4800), (6400, 4800)]
-        self.building_types = {'b_00': self.b_00_room_dims, 'b_10': self.b_10_room_dims, 'b_11': self.b_11_room_dims}
-        self.rooms_and_dims = {}
-
-    # def get_rooms_and_dims(self):
-    #         for key, value in self.building_types.items():
-    #             if key == self.b_id:
-    #                 room_type_sizes = value
-    #                 rooms_and_sizes = {f"{name}_{i}": size for i, (name, size) in enumerate(itertools.product(self.room_type_names, room_type_sizes))}
-    #                 self.rooms_and_dims = rooms_and_sizes
-    #                 print(len(rooms_and_sizes))
-    #                 print(rooms_and_sizes)
-
-
-#we can have an area with 1 room, 2 room, 3 rooms, 4 rooms.
-# its easier to generate all combos of rooms and assign their size later
+        self.no_areas = no_areas
+        self.modular_space = modular_space
+        self.apt_modules = apt_modules
+        self.essential_room_type_names = ['bathroom', 'kitchen', 'living_room']
+        self.essential_room_type_names = ['foyer', 'bedroom_1', 'bedroom_2', 'storage', 'pantry', 'bedroom_3']
+        self.room_b00_widths = [1300, 2600, 3900, 5200]
+        self.room_b11_widths = [1600, 3200, 4800, 6400]
+        self.b_00_room_len = [2600, 3900]
+        self.b_11_room_len = [3200, 4800]
+        self.rooms = {}
+        self.dims = {}
 
     def generate_room_layouts(number_of_areas):
+        pass
+
          # if area is 2 then bathroom, kitchen, maybe hallway but smallest dimms, living_room
          # if area is 2 then bathroom kitchen, maybe hallway, living_room, bedroom
-         pass
+    def generate_layout_combinations(self):
+         # Initialize variables
+
+
+
+
+        number = len(self.essential_room_type_names)
+        final_combinations = []
+        
+        # Use itertools.permutations() to generate all possible permutations
+        perms = itertools.permutations(self.essential_room_type_names)
+        
+        # Convert each permutation tuple to a string and join the characters
+        perms_as_strings = [''.join(p) for p in perms]
+        for perm in perms_as_strings:   
+            final_combinations.append(perm)
+        
+        # Generate all possible combinations of length equal to the length of the input list
+        combinations = [''.join(comb) for comb in itertools.product(self.essential_room_type_names, repeat=number)]
+            
+        # Iterate over all combinations
+        for comb in combinations:
+            # Check if the combination has at least two adjacent letters
+            has_adjacent = False
+            for i in range(number-1):
+                if comb[i] == comb[i+1]:
+                    has_adjacent = True
+                    break
+            if not has_adjacent:
+                continue
+            
+            # Check if the combination has any repeated letters in alternate positions #1
+            has_repeated_alternate = False
+            for i in range(0, number-3, 2):
+                if comb[i] == comb[i+2] and comb[i+1] == comb[i+3]:##
+                    has_repeated_alternate = True
+                    break
+            if has_repeated_alternate:
+                continue
+
+            # Check if the combination has any repeated letters in alternate positions #2
+            has_repeated_alternate = False
+            for i in range(0, number-3, 2):
+                if comb[i] == comb[i+1] and comb[i+1] == comb[i+3]:
+                    has_repeated_alternate = True
+                    break
+            if has_repeated_alternate:
+                continue
+            
+            
+            # Check if the combination has any repeated letters in alternate positions #3
+            has_repeated_alternate = False
+            for i in range(0, number-3, 2):
+                if comb[i] == comb[i+2] and comb[i+2] == comb[i+3]:
+                    has_repeated_alternate = True
+                    break
+            if has_repeated_alternate:
+                continue
+
+            # Check if the combination has any repeated letters in alternate positions #4
+            has_repeated_alternate = False
+            for i in range(0, number-3, 2):
+                if comb[i] == comb[i+3] and comb[i+1] == comb[i+2]:
+                    has_repeated_alternate = True
+                    break
+            if has_repeated_alternate:
+                continue
+
+            # If the combination passes all 4 tests, add it to the final combinations list
+            final_combinations.append(comb)
+        
+        return final_combinations
