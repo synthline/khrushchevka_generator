@@ -72,13 +72,22 @@ def generate_combinations(letters):
     
     return final_combinations
 
+def generate_tuples(list):
+    list_of_tuples = []
+    for i in list:
+        for j in list:
+            list_of_tuples.append((i,j))
+    return list_of_tuples
 
 letters = ['a', 'b', 'c', 'd']
 
 result_1 = generate_combinations(letters)
+print(result_1)
 
-result_2 = generate_combinations(result_1)
 
+result_2 = generate_tuples(result_1)
+#print(result_2)
+#print(len(result_2))
 
 #if tuple[0] has 4 letters that are all different then tuple[1] can only have 4 of the same.
 #if tuple[1] has 3 letters that are all different then tuple[1] can only have 4th which is not present in the third of the same.
