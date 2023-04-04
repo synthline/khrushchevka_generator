@@ -24,9 +24,6 @@ class rooms:
     def generate_layout_combinations(self):
          # Initialize variables
 
-
-
-
         number = len(self.essential_room_type_names)
         final_combinations = []
         

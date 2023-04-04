@@ -4,6 +4,10 @@ def generate_combinations(letters):
     # Initialize variables
     number = len(letters)
     final_combinations = []
+
+    # Simple loop to generate all values with all 4 chars that are the same:
+    for elem in letters:
+        final_combinations.append(elem * number)
     
     # Use itertools.permutations() to generate all possible permutations
     perms = itertools.permutations(letters)
@@ -45,7 +49,6 @@ def generate_combinations(letters):
         if has_repeated_alternate:
             continue
         
-        
         # Check if the combination has any repeated letters in alternate positions #3
         has_repeated_alternate = False
         for i in range(0, number-3, 2):
@@ -72,6 +75,13 @@ def generate_combinations(letters):
 
 letters = ['a', 'b', 'c', 'd']
 
-result = generate_combinations(letters)
-print(result)
-print(len(result))
+result_1 = generate_combinations(letters)
+
+result_2 = generate_combinations(result_1)
+
+
+#if tuple[0] has 4 letters that are all different then tuple[1] can only have 4 of the same.
+#if tuple[1] has 3 letters that are all different then tuple[1] can only have 4th which is not present in the third of the same.
+#if tuple[1] has 2 letters that are all different then tuple[1] can only have 2 that are not present in tuple[1].
+
+#in the tuple, 'd' needs to be present either in tuple[1][4], tuple[0][4], tuple[1][0], tuple[0][0]
