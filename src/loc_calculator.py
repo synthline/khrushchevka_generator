@@ -20,7 +20,6 @@ class loc_calculator:
         self.apt_loc_score = 0
         self.building_loc_score = 0
 
-
     def calculate_apt_and_building_loc(self):
         areas_score = (self.no_areas * self.no_areas) 
         mod_space = 0
@@ -35,8 +34,11 @@ class loc_calculator:
             pass
         elif self.rotation == 1:
             rotation_score += (mod_space * mod_space)
+
+        # Calculate the apartment score:
         apt_score = areas_score + mod_space + rotation_score
         self.apt_loc_score += apt_score
+        
         ext_modules_score = 0
         if self.ext_modules == 0:
              ext_modules_score += 1
@@ -46,8 +48,7 @@ class loc_calculator:
         if self.ext_modules == 0:
              apt_modules_score += 1
         else:
-            ext_modules_score += (apt_score * apt_score)
-        
-        building_score = apt_score * self.levels * ext_modules_score * apt_modules_score * self.no_apts
+            ext_modules_score += (apt_score * apt_score)       
+        building_score = apt_score * self.levels + ext_modules_score + apt_modules_score + self.no_apts
         self.building_loc_score += building_score
         

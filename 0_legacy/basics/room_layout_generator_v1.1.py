@@ -105,10 +105,14 @@ def filter_tuples(lst, allowed_letters, unique_letters):
 letters = ['a', 'b', 'c', 'd']
 
 result_1 = generate_combinations(letters)
-result_2 = generate_tuples(result_1)
-result_3 = filter_tuples(result_2)
-print(result_3)
-print(len(result_3))
+print(result_1)
+print(len(result_1))
+
+
+# result_2 = generate_tuples(result_1)
+# result_3 = filter_tuples(result_2)
+# print(result_3)
+# print(len(result_3))
 
 #if tuple[0] has 4 letters that are all different then tuple[1] can only have 4 of the same.
 #if tuple[1] has 3 letters that are all different then tuple[1] can only have 4th which is not present in the third of the same.

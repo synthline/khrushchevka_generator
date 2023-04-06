@@ -1,0 +1,19 @@
+so the building class gives the framework for the building instance(s).
+- Number of areas per apartment.
+- which types of modules are going to be used, thus influencing the area dimmensions. 
+- will the areas be rotating. (will floor be generated with a different approach then the original building plans. 
+.
+.
+.
+. 
+
+The possible room combinations are generated based on the module types and the number of modules used.
+.
+.
+.
+.
+.
+
+
+the apartment creator should be the space_creator, since the 
+

@@ -2,8 +2,7 @@ import itertools
 import random
 
 class rooms:
-    def __init__(self, b_id, no_areas, modular_space, apt_modules):
-        self.b_id = b_id
+    def __init__(self, no_areas, modular_space, apt_modules):
         self.no_areas = no_areas
         self.modular_space = modular_space
         self.apt_modules = apt_modules
