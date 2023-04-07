@@ -33,13 +33,14 @@ build_1_loc.calculate_apt_and_building_loc()
 
 
 # Temp graph origin point: 
-univ_origin = (5, 10)
-temp_areas = {'a0': (10, 20), 'a1': (15, 30)}
+univ_origin = (0, 0)
+temp_areas = {'a0': (3200, 6400), 'a1': (3200, 6400)}
 
 apt_1 = space_creator()
 apt_1.generate_area(temp_areas, 'a0', univ_origin)
+apt_1.add_area_rot_upper_e(temp_areas, 'a1')
 
 # #####__Display__#####
-# display_1 = display_2d()
-# display_1.extract_points(space_1)
-# display_1.create_and_display_plot()
+display_1 = display_2d()
+display_1.extract_points(apt_1.points)
+display_1.create_and_display_plot()

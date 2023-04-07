@@ -1,4 +1,4 @@
-from src.display_2d import display_2d
+from display_2d import display_2d
 from src.space_creator import space_creator
 
 univ_origin = (0, 0)

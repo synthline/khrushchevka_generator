@@ -8,7 +8,7 @@ class display_2d:
 
     def extract_points(self, space_all):
         for i, space in enumerate(space_all):
-            shape_coords = [space[1], space[2], space[3], space[4], space[1]]
+            shape_coords = [space[0], space[1], space[2], space[3], space[0]]
             self.x += [coord[0] for coord in shape_coords]
             self.y += [coord[1] for coord in shape_coords]
             self.colors += [i] * len(shape_coords)

@@ -60,10 +60,10 @@ class space_creator:
         starting_point = self.points[self.no_of_spaces -1][1]
         space_center = ((starting_point[0] + dims[0]/2), (starting_point[1] + dims[1])/2) 
         # Define the coordinates of the four corners of the space
-        space_corners = [(space_center[0] - dims[0]/2, space_center[1] - dims[1]/2),
-                        (space_center[0] + dims[0]/2, space_center[1] - dims[1]/2),
-                        (space_center[0] + dims[0]/2, space_center[1] + dims[1]/2),
-                        (space_center[0] - dims[0]/2, space_center[1] + dims[1]/2)]
+        space_corners = [(starting_point),
+                        (starting_point[0] + dims[0], starting_point[1]),
+                        (starting_point[0] + dims[0], starting_point[1] + dims[1]),
+                        (starting_point[0], starting_point[1]+ dims[1])]
         self.points.append(space_corners)
         # Names the points:
         point_names = []
@@ -86,10 +86,10 @@ class space_creator:
         starting_point = self.points[self.no_of_spaces -1][0]
         space_center = ((starting_point[0] + dims[0]/2), (starting_point[1] + dims[1])/2) 
         # Define the coordinates of the four corners of the space
-        space_corners = [(space_center[0] - (dims[0]/2 + dims[0]), space_center[1] - dims[1]/2),
-                        (space_center[0] - dims[0]/2, space_center[1] - dims[1]/2),
-                        (space_center[0] - dims[0]/2, space_center[1] + dims[1]/2),
-                        (space_center[0] - (dims[0]/2 + dims[0]), space_center[1] + dims[1]/2)]
+        space_corners = [(starting_point),
+                        (starting_point[0] - dims[0], starting_point[1]),
+                        (starting_point[0] - dims[0], starting_point[1] + dims[1]),
+                        (starting_point[0], starting_point[1] + dims[1])]
         self.points.append(space_corners)
         # Names the points:
         point_names = []
@@ -112,10 +112,10 @@ class space_creator:
         starting_point = self.points[self.no_of_spaces -1][3]
         space_center = ((starting_point[0] + dims[0]/2), (starting_point[1] + dims[1])/2) 
         # Define the coordinates of the four corners of the space
-        space_corners = [(space_center[0] - dims[0]/2, space_center[1] + dims[1]/2),
-                        (space_center[0] + dims[0]/2, space_center[1] + dims[1]/2),
-                        (space_center[0] + dims[0]/2, space_center[1] + dims[1]/2 + dims[1]),
-                        (space_center[0] - dims[0]/2, space_center[1] + (dims[1]/2) + dims[1])]
+        space_corners = [(starting_point),
+                        (starting_point[0] + dims[0], starting_point[1]),
+                        (starting_point[0] + dims[0], starting_point[1] + dims[1]),
+                        (starting_point[0], starting_point[1] + dims[1])]
         self.points.append(space_corners)
         # Names the points:
         point_names = []
@@ -138,10 +138,10 @@ class space_creator:
         starting_point = self.points[self.no_of_spaces -1][0]
         space_center = ((starting_point[0] - dims[0]/2), (starting_point[1] - dims[1])/2) 
         # Define the coordinates of the four corners of the space
-        space_corners = [(space_center[0] - dims[0]/2, space_center[1] - (dims[1]/2 + dims[1])),
-                            (space_center[0] + dims[0]/2, space_center[1] - (dims[1]/2 + dims[1])),
-                            (space_center[0] + dims[0]/2, space_center[1] - dims[1]/2),
-                            (space_center[0] - dims[0]/2, space_center[1] - dims[1]/2)]
+        space_corners = [(starting_point[0], starting_point[1] - dims[1]),
+                        (starting_point[0] + dims[0], starting_point[1] - dims[1]),
+                        (starting_point[0] + dims[0], starting_point[1]),
+                        (starting_point)]
         self.points.append(space_corners)
         # Names the points:
         point_names = []
@@ -155,20 +155,20 @@ class space_creator:
         self.space_comp_names.append(area_names)
         self.no_of_spaces +=1
 
-    def generate_rotated_90(self, dict, key, origin_point, space_center=None):
+    def generate_rotated_90(self, dict, key, origin_point):
         area_values = []
         area_names = []
         name = key
         self.space_name.append(name)
-        dims = dict[name]
-        if space_center is None:
+        temp_dims = dict[name]
+        dims = (temp_dims[1], temp_dims[0])
         # Defines the center of the space upon which the space coordinates are generated:
-            space_center = (origin_point[0] + dims[0]/2, origin_point[1] + dims[1]/2)
+        space_center = (origin_point[0] + dims[0]/2, origin_point[1] + dims[1]/2)
          # List of the space corners
-        space_corners = [(space_center[0] - dims[1]/2, space_center[1]- dims[0]/2),
-                        (space_center[0] + dims[1]/2, space_center[1] - dims[0]/2),
-                        (space_center[0] + dims[1]/2, space_center[1] + dims[1]/2),
-                        (space_center[0] - dims[1]/2, space_center[1] + dims[1]/2)]
+        space_corners = [(space_center[0] - dims[0], space_center[1] - dims[1]),
+                        (space_center[0], space_center[1] - dims[1]),
+                        (space_center[0], space_center[1]),
+                        (space_center[0] - dims[0], space_center[1])]
         self.points.append(space_corners)
         # Names the points:
         point_names = []
@@ -182,51 +182,53 @@ class space_creator:
         self.space_comp_names.append(area_names)
         self.no_of_spaces +=1
 
-    def add_area_rot_upper_e(self, dict, key):
-        starting_point = self.points[self.no_of_spaces -1][1]
-        self.generate_rotated_90(dict, key, starting_point)  
+    # def add_area_rot_upper_e(self, dict, key):
+    #     dims = dict[key]
+    #     starting_point = self.points[self.no_of_spaces -1][1]
+    #     new_origin_point = starting_point[0] + dims[1]/2, starting_point[0] - dims[1]/2
+    #     self.generate_rotated_90(dict, key, new_origin_point)
 
-    def add_area_rot_lower_e(self, dict, key):
-        dims = dict[key]
-        starting_point = self.points[self.no_of_spaces -1][2]
-        space_center = (starting_point[0] + dims[0]/2, starting_point[1] - dims[1]/2)
-        self.generate_rotated_90(dict, key, starting_point, space_center)
+    # def add_area_rot_lower_e(self, dict, key):
+    #     dims = dict[key]
+    #     starting_point = self.points[self.no_of_spaces -1][2]
+    #     new_origin_point = starting_point[0] - dims[1]/2, starting_point[0] + dims[1]/2
+    #     self.generate_rotated_90(dict, key, new_origin_point)
 
-    def add_area_rot_upper_w(self, dict, key):
-        dims = dict[key]
-        starting_point = self.points[self.no_of_spaces -1][3]
-        space_center = (starting_point[0] - dims[0]/2, starting_point[1] + dims[1]/2)
-        self.generate_rotated_90(dict, key, starting_point, space_center)
+    # def add_area_rot_upper_w(self, dict, key):
+    #     dims = dict[key]
+    #     starting_point = self.points[self.no_of_spaces -1][3]
+    #     space_center = (starting_point[0] - dims[0]/2, starting_point[1] + dims[1]/2)
+    #     self.generate_rotated_90(dict, key, starting_point, space_center)
 
-    def add_area_rot_lower_w(self, dict, key):
-        dims = dict[key]
-        starting_point = self.points[self.no_of_spaces -1][2]
-        space_center = (starting_point[0] - dims[0]/2, starting_point[1] - dims[1]/2)
-        self.generate_rotated_90(dict, key, starting_point, space_center)
+    # def add_area_rot_lower_w(self, dict, key):
+    #     dims = dict[key]
+    #     starting_point = self.points[self.no_of_spaces -1][2]
+    #     space_center = (starting_point[0] - dims[0]/2, starting_point[1] - dims[1]/2)
+    #     self.generate_rotated_90(dict, key, starting_point, space_center)
 
-    def add_area_rot_ne(self, dict, key):
-        dims = dict[key]
-        starting_point = self.points[self.no_of_spaces -1][0]
-        space_center = (starting_point[0] + dims[0]/2, starting_point[1] - dims[1]/2)
-        self.generate_rotated_90(dict, key, starting_point, space_center)
+    # def add_area_rot_ne(self, dict, key):
+    #     dims = dict[key]
+    #     starting_point = self.points[self.no_of_spaces -1][0]
+    #     space_center = (starting_point[0] + dims[0]/2, starting_point[1] - dims[1]/2)
+    #     self.generate_rotated_90(dict, key, starting_point, space_center)
 
-    def add_area_rot_nw(self, dict, key):
-        dims = dict[key]
-        starting_point = self.points[self.no_of_spaces -1][1]
-        space_center = (starting_point[0] - dims[0]/2, starting_point[1] - dims[1]/2)
-        self.generate_rotated_90(dict, key, starting_point, space_center)
+    # def add_area_rot_nw(self, dict, key):
+    #     dims = dict[key]
+    #     starting_point = self.points[self.no_of_spaces -1][1]
+    #     space_center = (starting_point[0] - dims[0]/2, starting_point[1] - dims[1]/2)
+    #     self.generate_rotated_90(dict, key, starting_point, space_center)
 
-    def add_area_rot_se(self, dict, key):
-        dims = dict[key]
-        starting_point = self.points[self.no_of_spaces -1][3]
-        space_center = (starting_point[0] + dims[0]/2, starting_point[1] + dims[1]/2)
-        self.generate_rotated_90(dict, key, starting_point, space_center)
+    # def add_area_rot_se(self, dict, key):
+    #     dims = dict[key]
+    #     starting_point = self.points[self.no_of_spaces -1][3]
+    #     space_center = (starting_point[0] + dims[0]/2, starting_point[1] + dims[1]/2)
+    #     self.generate_rotated_90(dict, key, starting_point, space_center)
 
-    def add_area_rot_sw(self, dict, key):
-        dims = dict[key]
-        starting_point = self.points[self.no_of_spaces -1][2]
-        space_center = (starting_point[0] - dims[0]/2, starting_point[1] + dims[1]/2)
-        self.generate_rotated_90(dict, key, starting_point, space_center)
+    # def add_area_rot_sw(self, dict, key):
+    #     dims = dict[key]
+    #     starting_point = self.points[self.no_of_spaces -1][2]
+    #     space_center = (starting_point[0] - dims[0]/2, starting_point[1] + dims[1]/2)
+    #     self.generate_rotated_90(dict, key, starting_point, space_center)
 
     def generate_shape(self):
         area_values = []
