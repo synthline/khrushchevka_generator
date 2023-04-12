@@ -155,6 +155,17 @@ class space_creator:
         self.space_comp_names.append(area_names)
         self.no_of_spaces +=1
 
+    def generate_combinations(self, dict, key, rotation, origin_point):
+        self.generate_area(dict, key, origin_point)
+        
+        if rotation == 0:
+            self.add_area_e(dict, key)
+
+        elif rotation == 1:
+            pass
+
+
+
     def generate_rotated_90(self, dict, key, origin_point):
         area_values = []
         area_names = []
