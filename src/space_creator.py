@@ -164,8 +164,6 @@ class space_creator:
         elif rotation == 1:
             pass
 
-
-
     def generate_rotated_90(self, dict, key, origin_point):
         area_values = []
         area_names = []

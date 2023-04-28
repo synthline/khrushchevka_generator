@@ -18,9 +18,9 @@ apt_modules = 1 ### 6 -- Number of apartment module types per floor interior: 0:
 no_apts = 4 ### 7 -- Number of apartments per floor
 
 # Building Object: ---------------------NOT SURE WHAT IS THE USE OF THIS ANYMORE----PLS REVIEW.
-building_1 = buildings(modular_space)
-building_1.generate_areas(no_areas)
-
+# building_1 = buildings(modular_space)
+# building_1.generate_areas(no_areas)
+# print(building_1.building_areas)
 # Building LOC:
 # build_1_loc = loc_calculator(no_areas, modular_space, rotation, levels, ext_modules, apt_modules, no_apts)
 # build_1_loc.calculate_apt_and_building_loc()
@@ -28,31 +28,36 @@ building_1.generate_areas(no_areas)
 # print(build_1_loc.building_loc_score)
 
 # Room Layout Generator:
-#rooms_1 = rooms(no_areas, modular_space, apt_modules)
+rooms_1 = rooms(no_areas, modular_space, apt_modules)
+
+unique_rooms = ['bathroom', 'kitchen', 'foyer']
+se_corner = 'bathroom'
+sw_corner = 'foyer'
+rooms_1.generate_layout_combinations()
+#print(rooms_1.room_combinations)
+
+# # Temp graph origin point: 
+# univ_origin = (0, 0)
+# temp_areas = {'a0': (3200, 6400), 'a1': (4000, 6400)} # This will be an utput from building_1
+# staircase = {'s0': (3200, 6400)}
+
+# # Instantiate the areas:
+# apt_1 = space_creator()
+# apt_2 = space_creator()
+# stairs_0 = space_creator()
+# levels = space_creator()
 
 
-# Temp graph origin point: 
-univ_origin = (0, 0)
-temp_areas = {'a0': (3200, 6400), 'a1': (4000, 6400)} # This will be an utput from building_1
-staircase = {'s0': (3200, 6400)}
+# apt_1.generate_area(temp_areas, 'a0', univ_origin)
+# apt_1.add_area_e(temp_areas, 'a0')
 
-# Instantiate the areas:
-apt_1 = space_creator()
-apt_2 = space_creator()
-stairs_0 = space_creator()
-levels = space_creator()
+# # apt_1.generate_combinations(temp_areas, 'a0', rotation)
+# # apt_2.generate_combinations(temp_areas, 'a1', rotation)
+
+# # levels.generate_apt_combinations(apt_1, apt_2, stairs_0, no_apts)
 
 
-apt_1.generate_area(temp_areas, 'a0', univ_origin)
-apt_1.add_area_e(temp_areas, 'a0')
-
-# apt_1.generate_combinations(temp_areas, 'a0', rotation)
-# apt_2.generate_combinations(temp_areas, 'a1', rotation)
-
-# levels.generate_apt_combinations(apt_1, apt_2, stairs_0, no_apts)
-
-
-# #####__Display__#####
-display_1 = display_2d()
-display_1.extract_points(apt_1.points)
-display_1.create_and_display_plot()
+# # #####__Display__#####
+# display_1 = display_2d()
+# display_1.extract_points(apt_1.points)
+# display_1.create_and_display_plot()
